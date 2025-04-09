@@ -1,6 +1,6 @@
-namespace apbd_02;
+namespace apbd_assignment_05;
 
-class Smartwatch : Device, IPowerNotifier
+public class Smartwatch : Device, IPowerNotifier
 {
     private int batteryPercentage;
     public int BatteryPercentage

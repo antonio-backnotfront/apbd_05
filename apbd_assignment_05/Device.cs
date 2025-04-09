@@ -1,6 +1,6 @@
-namespace apbd_02;
+namespace apbd_assignment_05;
 
-abstract class Device
+abstract public class Device
 {
     
     

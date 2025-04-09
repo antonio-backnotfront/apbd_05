@@ -1,4 +1,4 @@
-namespace apbd_02;
+namespace apbd_assignment_05;
 
 static class DeviceFactory
 {

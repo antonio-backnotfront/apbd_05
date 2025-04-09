@@ -2,9 +2,9 @@
 
 using System.Text.RegularExpressions;
 
-namespace apbd_02;
+namespace apbd_assignment_05;
 
-class EmbeddedDevice : Device
+public class EmbeddedDevice : Device
 {
     private string _ipAddress;
     public string IpAddress

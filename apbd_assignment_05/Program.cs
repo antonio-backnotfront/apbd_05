@@ -1,10 +1,13 @@
+using apbd_assignment_05;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddControllers();
-// Learn more about configuring OpenAPI at https://aka.ms/aspnet/openapi
+// builder.Services.AddControllers();
 builder.Services.AddOpenApi();
+builder.Services.AddControllers();
+builder.Services.AddSingleton<DeviceManager>(sp => new DeviceManager("input.txt"));
 
 var app = builder.Build();
 
@@ -21,3 +24,5 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
+
+

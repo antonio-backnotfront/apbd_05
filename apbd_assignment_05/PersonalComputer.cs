@@ -1,6 +1,6 @@
-namespace apbd_02;
+namespace apbd_assignment_05;
 
-class PersonalComputer : Device
+public class PersonalComputer : Device
 {
     public string? OperatingSystem { get; set; }
 

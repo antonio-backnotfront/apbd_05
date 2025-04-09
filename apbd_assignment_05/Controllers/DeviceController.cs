@@ -1,4 +1,4 @@
-using apbd_02;
+using apbd_assignment_05;
 using Microsoft.AspNetCore.Mvc;
 
 namespace apbd_assignment_05.Controllers;
@@ -7,12 +7,13 @@ namespace apbd_assignment_05.Controllers;
 [Route("/api/devices")]
 public class DeviceController : ControllerBase
 {
-    DeviceManager manager;
+    private readonly DeviceManager manager;
 
-    public DeviceController()
+    public DeviceController(DeviceManager manager)
     {
-        this.manager = new DeviceManager("input.txt");
+        this.manager = manager;
     }
+
     
     [HttpGet("getDevices")]
     public IActionResult GetDevices()
@@ -29,16 +30,50 @@ public class DeviceController : ControllerBase
         }
         return Ok(device);   
     }
-    [HttpGet("{indexNumber}")]
-    public IActionResult GetDevice(string indexNumber)
+    
+    [HttpPost]
+    public IActionResult AddDevice([FromBody] DeviceDto dto)
     {
-        Device device = manager.getDevices().Find(e => e.Id.ToString() == indexNumber);
-        if (device == null)
+        try
         {
-            return NotFound($"Device with id {indexNumber} does not exist");
+            Device device = dto.Type switch
+            {
+                "SW" => new Smartwatch
+                {
+                    Id = manager.getDevices().Count + 1,
+                    Name = dto.Name,
+                    IsTurnedOn = dto.IsTurnedOn,
+                    BatteryPercentage = dto.BatteryPercentage ?? throw new ArgumentException("BatteryPercentage is required for Smartwatch")
+                },
+                "P" => new PersonalComputer
+                {
+                    Id = manager.getDevices().Count + 1,
+                    Name = dto.Name,
+                    IsTurnedOn = dto.IsTurnedOn,
+                    OperatingSystem = dto.OperatingSystem
+                },
+                "ED" => new EmbeddedDevice
+                {
+                    Id = manager.getDevices().Count + 1,
+                    Name = dto.Name,
+                    IsTurnedOn = dto.IsTurnedOn,
+                    IpAddress = dto.IpAddress ?? throw new ArgumentException("IpAddress is required for EmbeddedDevice"),
+                    NetworkName = dto.NetworkName ?? throw new ArgumentException("NetworkName is required for EmbeddedDevice")
+                },
+                _ => throw new ArgumentException("Invalid device type")
+            };
+
+            manager.AddDevice(device);
+            manager.SaveDevices();
+            
+            return Created($"/api/devices/{device.Id}", device);
         }
-        return Ok(device);   
+        catch (Exception ex)
+        {
+            return BadRequest(new { error = ex.Message });
+        }
     }
+
     
     
 }

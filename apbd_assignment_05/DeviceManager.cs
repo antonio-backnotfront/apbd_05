@@ -1,9 +1,9 @@
-namespace apbd_02;
+namespace apbd_assignment_05;
 
 /// <summary>
 /// <param name="title">Device manage fjaifnainfkafa</param>
 /// </summary>
-class DeviceManager
+public class DeviceManager
 {
     private const int MaxDevices = 15;
     private List<Device> devices = new();
@@ -69,7 +69,29 @@ class DeviceManager
     /// <summary>
     /// Save all the devices in the file
     /// </summary>
-    public void SaveDevices() => File.WriteAllLines(filePath, devices.ConvertAll(d => d.ToString()));
+    public void SaveDevices()
+    {
+        var lines = new List<string>();
+
+        foreach (var device in devices)
+        {
+            switch (device)
+            {
+                case Smartwatch sw:
+                    lines.Add($"SW-{sw.Id},{sw.Name},{sw.IsTurnedOn.ToString().ToLower()},{sw.BatteryPercentage}%");
+                    break;
+                case PersonalComputer pc:
+                    lines.Add($"P-{pc.Id},{pc.Name},{pc.IsTurnedOn.ToString().ToLower()},{pc.OperatingSystem}");
+                    break;
+                case EmbeddedDevice ed:
+                    lines.Add($"ED-{ed.Id},{ed.Name},{ed.IpAddress},{ed.NetworkName}");
+                    break;
+            }
+        }
+
+        File.WriteAllLines(filePath, lines);
+    }
+
     
     /// <summary>
     /// Turn on the device by the specified id

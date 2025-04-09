@@ -31,3 +31,4 @@
 /Users/solianyk/Desktop/cs/apbd/apbd_05_03/apbd_assignment_05/apbd_assignment_05/obj/Debug/net9.0/apbd_assignment_05.pdb
 /Users/solianyk/Desktop/cs/apbd/apbd_05_03/apbd_assignment_05/apbd_assignment_05/obj/Debug/net9.0/apbd_assignment_05.genruntimeconfig.cache
 /Users/solianyk/Desktop/cs/apbd/apbd_05_03/apbd_assignment_05/apbd_assignment_05/obj/Debug/net9.0/ref/apbd_assignment_05.dll
+/Users/solianyk/Desktop/cs/apbd/apbd_05_03/apbd_assignment_05/apbd_assignment_05/obj/Debug/net9.0/apbd_assignment_05.sourcelink.json
