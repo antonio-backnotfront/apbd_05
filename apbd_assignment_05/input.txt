@@ -1,3 +1,2 @@
 P-1,ThinkPad 999,false,Linux Mint
 P-2,ThinkPad 999,false,Linux Mint
-SW-3,Sw 1,true,80%

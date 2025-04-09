@@ -117,4 +117,5 @@ public class DeviceManager
         devices.First(i => i.Id == newId).Name = name;
         devices.First(i => i.Id == newId).IsTurnedOn = isTurnedOn;
     }
+    
 }
